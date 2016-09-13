@@ -12,7 +12,13 @@ conn = qarnot.Connection('samples.conf')
 
 # A set of linux distributions that could be found on https://hub.docker.com/explore/
 # Each distribution is started in a different task. All the tasks are running in parallel
-linux_versions = ["library/centos:5", "library/centos:6", "library/ubuntu:14.04", "library/ubuntu:16.04", "library/debian:jessie", "library/opensuse:42.1", "base/archlinux:latest"]
+linux_versions = ["library/centos:5",      \
+                  "library/centos:6",      \
+                  "library/ubuntu:14.04",  \
+                  "library/ubuntu:16.04",  \
+                  "library/debian:jessie", \
+                  "library/opensuse:42.1", \
+                  "base/archlinux:latest"]
  
 # Create the tasks
 tasks = {i:conn.create_task('sample3-dockerhub-%s' % i, 'docker-batch', 1) for i in linux_versions}
