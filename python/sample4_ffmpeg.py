@@ -12,7 +12,7 @@ if len(args) == 0:
     sys.exit(1)
 
 # Build the full command line
-ffmpeg_cmd = 'ffmpeg ' + ' '.join(args)
+ffmpeg_cmd = ' '.join(args)
 
 # Find the input file
 input_file = None
