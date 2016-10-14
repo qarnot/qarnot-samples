@@ -44,7 +44,7 @@ try:
     last_execution_progress = 0.0
     done = False    
     while not done:
-        if task.status.execution_progress != last_execution_progress:
+        if task.status is not None and task.status.execution_progress != last_execution_progress:
             last_execution_progress = task.status.execution_progress
             print("** Overall progress {}%".format(last_execution_progress))
 
