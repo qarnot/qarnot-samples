@@ -69,5 +69,5 @@ try:
     task.download_results('output')
 
 finally:
-    # task.delete() # Uncomment to delete the task after completion
+    task.delete(purge_resources=True, purge_results=True)
     pass
