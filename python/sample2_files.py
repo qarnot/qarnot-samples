@@ -62,5 +62,5 @@ try:
             print("<<< output/LOREM.TXT:\n----------------------------\n%s\n----------------------------" % content_file.read())
 
 finally:
-    task.delete()
+    task.delete(purge_resources=True, purge_results=True)
     pass

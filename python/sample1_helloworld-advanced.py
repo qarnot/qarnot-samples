@@ -44,5 +44,5 @@ try:
         print("** Errors: %s" % task.errors[0])
 
 finally:
-    task.delete()
+    task.delete(purge_resources=True, purge_results=True)
     pass

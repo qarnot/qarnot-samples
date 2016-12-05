@@ -77,6 +77,6 @@ try:
         task.download_results('.')
 
 finally:
-    task.delete()
+    task.delete(purge_resources=True, purge_results=True)
     pass
 

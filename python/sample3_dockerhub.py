@@ -61,5 +61,6 @@ try:
             print("** %s >>> Errors: %s" % (task.name, task.errors[0]))
 
 finally:
-    map(operator.methodcaller('delete'), tasks.values())
+    for task in tasks:
+        task.delete(purge_resources=True, purge_results=True)
     pass
