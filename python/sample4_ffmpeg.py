@@ -73,7 +73,7 @@ try:
         # Display errors on failure
         print("** Errors: %s" % task.errors[0])
     else: 
-        # Or downlaod the results
+        # Or download the results
         task.download_results('.')
 
 finally:
