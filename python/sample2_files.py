@@ -17,6 +17,9 @@ conn = qarnot.Connection('samples.conf')
 # deleted in the end, to prevent tasks from continuing to run after
 # a Ctrl-C for instance
 task = conn.create_task('sample2-files', 'docker-batch', 1)
+
+# Store if an error happened during the process
+error_happened = False
 try:
     # Create a resource disk and add an input file
     input_disk = conn.create_disk('sample2-files-input-resource')
@@ -54,6 +57,8 @@ try:
     # Display errors on failure
     if task.state == 'Failure':
         print("** Errors: %s" % task.errors[0])
+        error_happened = True
+
     else:
         task.download_results('output')
 
@@ -63,4 +68,7 @@ try:
 
 finally:
     task.delete(purge_resources=True, purge_results=True)
+    # Exit code in case of error
+    if error_happened:
+        sys.exit(1)
     pass

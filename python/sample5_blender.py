@@ -14,6 +14,9 @@ conn = qarnot.Connection('samples.conf')
 # Create a task.
 # Because we are selecting the frame to render inside the task, put the framecount to 0
 task = conn.create_task('sample5-blender', 'blender', 0)
+
+# Store if an error happened during the process
+error_happened = False
 try:
     # Create a resource disk and add an input file
     print("** Uploading %s..." % input_file)
@@ -64,10 +67,14 @@ try:
     # Display errors on failure
     if task.state == 'Failure':
         print("** Errors: %s" % task.errors[0])
+        error_happened = True
 
     # Download succeeded frames
     task.download_results('output')
 
 finally:
     task.delete(purge_resources=True, purge_results=True)
+    # Exit code in case of error
+    if error_happened:
+        sys.exit(1)
     pass
