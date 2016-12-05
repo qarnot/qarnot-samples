@@ -22,6 +22,9 @@ linux_versions = ["library/centos:5",      \
  
 # Create the tasks
 tasks = {i:conn.create_task('sample3-dockerhub-%s' % i, 'docker-batch', 1) for i in linux_versions}
+
+# Store if an error happened during the process
+error_happened = False
 try:
     # Set the command to run when launching the container, by overriding a
     # constant.
@@ -59,8 +62,14 @@ try:
     for task in tasks.values():
         if task.state == 'Failure':
             print("** %s >>> Errors: %s" % (task.name, task.errors[0]))
+            error_happened = True
+
 
 finally:
     for task in tasks:
         task.delete(purge_resources=True, purge_results=True)
+
+    # Exit code in case of error
+    if error_happened:
+        sys.exit(1)
     pass
