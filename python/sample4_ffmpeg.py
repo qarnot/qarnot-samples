@@ -16,7 +16,7 @@ ffmpeg_cmd = ' '.join(args)
 
 # Find the input file
 input_file = None
-for i in xrange(0, len(args)-1):
+for i in range(0, len(args)-1):
   if args[i] == "-i": input_file = args[i+1]
 
 # Display that we parsed
