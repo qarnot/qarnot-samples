@@ -66,7 +66,7 @@ try:
 
 
 finally:
-    for task in tasks:
+    for task in tasks.values():
         task.delete(purge_resources=True, purge_results=True)
 
     # Exit code in case of error
