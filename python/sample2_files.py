@@ -71,4 +71,3 @@ finally:
     # Exit code in case of error
     if error_happened:
         sys.exit(1)
-    pass
