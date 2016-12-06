@@ -21,7 +21,7 @@ linux_versions = ["library/centos:5",      \
                   "base/archlinux:latest"]
  
 # Create the tasks
-tasks = {i:conn.create_task('sample3-dockerhub-%s' % i, 'docker-batch', 1) for i in linux_versions}
+tasks = {i: conn.create_task('sample3-dockerhub-%s' % i, 'docker-batch', 1) for i in linux_versions}
 
 # Store if an error happened during the process
 error_happened = False
@@ -41,7 +41,7 @@ try:
 
     # Wait for the task to be finished, and monitor the progress of its
     # deployment
-    last_state = {task.name:'' for task in tasks.values()}
+    last_state = {task.name: '' for task in tasks.values()}
     done = False
     while not done:
         for task in tasks.values():
