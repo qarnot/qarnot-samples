@@ -12,7 +12,7 @@ input_file = 'blender/qarnot.blend'
 conn = qarnot.Connection('samples.conf')
 
 # Create a task.
-# Because we are selecting the frame to render inside the task, put the framecount to 0
+# Because we are selecting the frame to render inside the task, put the frame count to 0
 task = conn.create_task('sample5-blender', 'blender', 0)
 
 # Store if an error happened during the process
