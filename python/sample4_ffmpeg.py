@@ -40,6 +40,7 @@ try:
     # constant.
     # Task constants are the main way of controlling a task's behaviour
     task.constants['DOCKER_REPO'] = 'jrottenberg/ffmpeg'
+    task.constants['DOCKER_TAG'] = 'ubuntu'
     task.constants['DOCKER_CMD'] = ffmpeg_cmd
     # task.constants['DOCKER_CMD'] = "sleep 3600"
 
