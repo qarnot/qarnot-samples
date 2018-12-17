@@ -44,13 +44,17 @@ try:
     task.constants['DOCKER_CMD'] = ffmpeg_cmd
     # task.constants['DOCKER_CMD'] = "sleep 3600"
 
-    input_disk = conn.create_disk('sample4-ffmpeg-input-resource')
+    input_bucket = conn.create_bucket('sample4-ffmpeg-input-resource')
     for input_file in input_files:
-        # Create a resource disk and add our input file.
-        input_disk[input_file] = input_file
+        # Create a resource bucket and add our input file.
+        input_bucket[input_file] = input_file
 
-    # Attach the disk to the task
-    task.resources.append(input_disk)
+    # Attach the bucket to the task
+    task.resources.append(input_bucket)
+
+    # Create and attach an output bucket
+    output_bucket = conn.create_bucket('sample4-ffmpeg-output')
+    task.results = output_bucket
 
     # Submit the task to the Api, that will launch it on the cluster
     task.submit()

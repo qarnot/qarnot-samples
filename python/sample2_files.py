@@ -21,12 +21,16 @@ task = conn.create_task('sample2-files', 'docker-batch', 1)
 # Store if an error happened during the process
 error_happened = False
 try:
-    # Create a resource disk and add an input file
-    input_disk = conn.create_disk('sample2-files-input-resource')
-    input_disk.add_file('input/lorem.txt')
+    # Create a resource bucket and add an input file
+    input_bucket = conn.create_bucket('sample2-files-input-resource')
+    input_bucket.add_file('input/lorem.txt')
     
-    # Attach the disk to the task
-    task.resources.append(input_disk)
+    # Attach the bucket to the task
+    task.resources.append(input_bucket)
+
+    # Create a result bucket and attach it to the task
+    output_bucket = conn.create_bucket('sample2-files-output')
+    task.results = output_bucket
 
     # Set the command to run when launching the container, by overriding a
     # constant.
