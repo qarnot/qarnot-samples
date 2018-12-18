@@ -18,13 +18,17 @@ task = conn.create_task('sample5-blender', 'blender', 0)
 # Store if an error happened during the process
 error_happened = False
 try:
-    # Create a resource disk and add an input file
+    # Create a resource bucket and add an input file
     print("** Uploading %s..." % input_file)
-    input_disk = conn.create_disk('sample5-blender-input-resource')
-    input_disk.add_file(input_file)
+    input_bucket = conn.create_bucket('sample5-blender-input-resource')
+    input_bucket.add_file(input_file)
 
-    # Attach the disk to the task
-    task.resources.append(input_disk)
+    # Attach the bucket to the task
+    task.resources.append(input_bucket)
+
+    # Create and attach an output bucket
+    output_bucket = conn.create_bucket('sample5-blender-output')
+    task.results = output_bucket
 
     # Render the frame 115 to 120
     task.advanced_range = '115-120'
@@ -45,7 +49,7 @@ try:
     # Wait for the task to be finished, and monitor its progress
     last_state = ''
     last_execution_progress = 0.0
-    done = False    
+    done = False
     while not done:
         if task.status is not None and task.status.execution_progress != last_execution_progress:
             last_execution_progress = task.status.execution_progress
@@ -63,7 +67,7 @@ try:
         # Display fresh stdout / stderr
         sys.stdout.write(task.fresh_stdout())
         sys.stderr.write(task.fresh_stderr())
-                        
+
     # Display errors on failure
     if task.state == 'Failure':
         print("** Errors: %s" % task.errors[0])
