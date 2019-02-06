@@ -18,7 +18,7 @@ linux_versions = ["library/centos:5",      \
                   "library/ubuntu:16.04",  \
                   "library/debian:jessie", \
                   "library/opensuse:42.1", \
-                  "base/archlinux:latest"]
+                  "archlinux/base:latest"]
  
 # Create the tasks
 tasks = {i: conn.create_task('sample3-dockerhub-%s' % i, 'docker-batch', 1) for i in linux_versions}
