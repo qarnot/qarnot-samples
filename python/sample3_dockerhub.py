@@ -17,7 +17,7 @@ linux_versions = ["library/centos:5",      \
                   "library/ubuntu:14.04",  \
                   "library/ubuntu:16.04",  \
                   "library/debian:jessie", \
-                  "library/opensuse:42.1", \
+                  "opensuse/leap:42.3", \
                   "archlinux/base:latest"]
  
 # Create the tasks
