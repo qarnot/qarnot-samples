@@ -27,9 +27,7 @@ print("** Input files: %s" % ', '.join(input_files))
 # Create a connection, from which all other objects will be derived
 conn = qarnot.Connection('samples.conf')
 
-# Create a task. The 'with' statement ensures that the task will be
-# deleted in the end, to prevent tasks from continuing to run after
-# a Ctrl-C for instance
+# Create a task with the batch profile.
 task = conn.create_task('sample4-ffmpeg', 'docker-batch', 1)
 
 # Store if an error happened during the process
